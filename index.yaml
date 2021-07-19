@@ -3,7 +3,7 @@ jobs:
 # Generic jobs
 - job:
   displayName: 'Celf-hosted Centos store permissions'
-  pool: Centos
+  pool: Windows
   steps:
   - template: './doStorePermissions.yaml'
     parameters:
@@ -11,7 +11,7 @@ jobs:
       drop2name: 'drop2'
 - job:
   displayName: 'Celf-hosted Centos don`t store permissions'
-  pool: Centos
+  pool: Windows
   steps:
   - template: './dontStorePermissions.yaml'
     parameters:
@@ -19,8 +19,7 @@ jobs:
       drop2name: 'drop4'
 - job:
   displayName: 'Ubuntu 16.04 store permissions'
-  pool:
-    vmImage: ubuntu-16.04
+  pool: Windows
   steps:
   - template: './doStorePermissions.yaml'
     parameters:
@@ -28,8 +27,7 @@ jobs:
       drop2name: 'drop6'
 - job:
   displayName: 'Ubuntu 16.04 don`t store permissions'
-  pool:
-    vmImage: ubuntu-16.04
+  pool: Windows
   steps:
   - template: './dontStorePermissions.yaml'
     parameters:
@@ -37,8 +35,7 @@ jobs:
       drop2name: 'drop8'
 - job:
   displayName: 'Ubuntu 20.04 store permissions'
-  pool:
-    vmImage: ubuntu-20.04
+  pool: Windows
   steps:
   - template: './doStorePermissions.yaml'
     parameters:
@@ -46,8 +43,7 @@ jobs:
       drop2name: 'drop10'
 - job:
   displayName: 'Ubuntu 20.04 don`t store permissions'
-  pool:
-    vmImage: ubuntu-20.04
+  pool: Windows
   steps:
   - template: './dontStorePermissions.yaml'
     parameters:
@@ -55,8 +51,7 @@ jobs:
       drop2name: 'drop12'
 - job:
   displayName: 'Macos store permissions'
-  pool:
-    vmImage: macos-latest
+  pool: Windows
   steps:
   - template: './doStorePermissions.yaml'
     parameters:
@@ -64,8 +59,7 @@ jobs:
       drop2name: 'drop14'
 - job:
   displayName: 'Macos don`t store permissions'
-  pool:
-    vmImage: macos-latest
+  pool: Windows
   steps:
   - template: './dontStorePermissions.yaml'
     parameters:
@@ -75,8 +69,7 @@ jobs:
 # Show warnings
 - job:
   displayName: 'Show warning if no archives were found'
-  pool:
-    vmImage: ubuntu-18.04
+  pool: Windows
   steps:
   - template: './showWarning.yaml'
     parameters:
@@ -84,7 +77,7 @@ jobs:
       drop2name: 'drop18'
 - job:
   displayName: 'Show warning if no archives were found centos self-hosted'
-  pool: Centos
+  pool: Windows
   steps:
   - template: './showWarning.yaml'
     parameters:
@@ -94,8 +87,7 @@ jobs:
 # Multiple download and extraction
 - job:
   displayName: 'Download multiple tars'
-  pool:
-    vmImage: ubuntu-20.04
+  pool: Windows
   steps:
   - template: './multipleTars.yaml'
     parameters:
@@ -103,8 +95,7 @@ jobs:
       drop2name: 'drop22'
 - job:
   displayName: 'Download and extract multiple tars'
-  pool:
-    vmImage: ubuntu-18.04
+  pool: Windows
   steps:
   - template: './multipleTarsExtract.yaml'
     parameters:
@@ -112,7 +103,7 @@ jobs:
       drop2name: 'drop24'
 - job:
   displayName: 'Download multiple tars centos self-hosted'
-  pool: Centos
+  pool: Windows
   steps:
   - template: './multipleTars.yaml'
     parameters:
@@ -120,8 +111,7 @@ jobs:
       drop2name: 'drop26'
 - job:
   displayName: 'Download and extract multiple tars'
-  pool:
-    vmImage: ubuntu-18.04
+  pool: Windows
   steps:
   - template: './multipleTarsExtract.yaml'
     parameters:
@@ -129,7 +119,7 @@ jobs:
       drop2name: 'drop28'
 - job:
   displayName: 'Download and extract multiple tars self-hosted centos'
-  pool: Centos
+  pool: Windows
   steps:
   - template: './multipleTarsExtract.yaml'
     parameters:
@@ -137,8 +127,7 @@ jobs:
       drop2name: 'drop30'
 - job:
   displayName: 'Normalize paths'
-  pool:
-    vmImage: ubuntu-18.04
+  pool: Windows
   steps:
   - template: './normalizePaths.yaml'
     parameters:
@@ -146,8 +135,7 @@ jobs:
       drop2name: 'drop28-1'
 - job:
   displayName: 'Clean destination folder'
-  pool:
-    vmImage: ubuntu-18.04
+  pool: Windows
   steps:
   - template: './cleanDestinationFolder.yaml'
     parameters:
@@ -158,8 +146,7 @@ jobs:
 # from file shares
 - job:
   displayName: 'Windows don`t store permissions'
-  pool:
-    vmImage: windows-latest
+  pool: Windows
   steps:
   - template: './dontStorePermissions.yaml'
     parameters:

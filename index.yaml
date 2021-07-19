@@ -1,0 +1,209 @@
+jobs:
+
+# Generic jobs
+- job:
+  displayName: 'Celf-hosted Centos store permissions'
+  pool: Centos
+  steps:
+  - template: './doStorePermissions.yaml'
+    parameters:
+      drop1name: 'drop1'
+      drop2name: 'drop2'
+- job:
+  displayName: 'Celf-hosted Centos don`t store permissions'
+  pool: Centos
+  steps:
+  - template: './dontStorePermissions.yaml'
+    parameters:
+      drop1name: 'drop3'
+      drop2name: 'drop4'
+- job:
+  displayName: 'Ubuntu 16.04 store permissions'
+  pool:
+    vmImage: ubuntu-16.04
+  steps:
+  - template: './doStorePermissions.yaml'
+    parameters:
+      drop1name: 'drop5'
+      drop2name: 'drop6'
+- job:
+  displayName: 'Ubuntu 16.04 don`t store permissions'
+  pool:
+    vmImage: ubuntu-16.04
+  steps:
+  - template: './dontStorePermissions.yaml'
+    parameters:
+      drop1name: 'drop7'
+      drop2name: 'drop8'
+- job:
+  displayName: 'Ubuntu 20.04 store permissions'
+  pool:
+    vmImage: ubuntu-20.04
+  steps:
+  - template: './doStorePermissions.yaml'
+    parameters:
+      drop1name: 'drop9'
+      drop2name: 'drop10'
+- job:
+  displayName: 'Ubuntu 20.04 don`t store permissions'
+  pool:
+    vmImage: ubuntu-20.04
+  steps:
+  - template: './dontStorePermissions.yaml'
+    parameters:
+      drop1name: 'drop11'
+      drop2name: 'drop12'
+- job:
+  displayName: 'Macos store permissions'
+  pool:
+    vmImage: macos-latest
+  steps:
+  - template: './doStorePermissions.yaml'
+    parameters:
+      drop1name: 'drop13'
+      drop2name: 'drop14'
+- job:
+  displayName: 'Macos don`t store permissions'
+  pool:
+    vmImage: macos-latest
+  steps:
+  - template: './dontStorePermissions.yaml'
+    parameters:
+      drop1name: 'drop15'
+      drop2name: 'drop16'
+
+# Show warnings
+- job:
+  displayName: 'Show warning if no archives were found'
+  pool:
+    vmImage: ubuntu-18.04
+  steps:
+  - template: './showWarning.yaml'
+    parameters:
+      drop1name: 'drop17'
+      drop2name: 'drop18'
+- job:
+  displayName: 'Show warning if no archives were found centos self-hosted'
+  pool: Centos
+  steps:
+  - template: './showWarning.yaml'
+    parameters:
+      drop1name: 'drop19'
+      drop2name: 'drop20'
+
+# Multiple download and extraction
+- job:
+  displayName: 'Download multiple tars'
+  pool:
+    vmImage: ubuntu-20.04
+  steps:
+  - template: './multipleTars.yaml'
+    parameters:
+      drop1name: 'drop21'
+      drop2name: 'drop22'
+- job:
+  displayName: 'Download and extract multiple tars'
+  pool:
+    vmImage: ubuntu-18.04
+  steps:
+  - template: './multipleTarsExtract.yaml'
+    parameters:
+      drop1name: 'drop23'
+      drop2name: 'drop24'
+- job:
+  displayName: 'Download multiple tars centos self-hosted'
+  pool: Centos
+  steps:
+  - template: './multipleTars.yaml'
+    parameters:
+      drop1name: 'drop25'
+      drop2name: 'drop26'
+- job:
+  displayName: 'Download and extract multiple tars'
+  pool:
+    vmImage: ubuntu-18.04
+  steps:
+  - template: './multipleTarsExtract.yaml'
+    parameters:
+      drop1name: 'drop27'
+      drop2name: 'drop28'
+- job:
+  displayName: 'Download and extract multiple tars self-hosted centos'
+  pool: Centos
+  steps:
+  - template: './multipleTarsExtract.yaml'
+    parameters:
+      drop1name: 'drop29'
+      drop2name: 'drop30'
+- job:
+  displayName: 'Normalize paths'
+  pool:
+    vmImage: ubuntu-18.04
+  steps:
+  - template: './normalizePaths.yaml'
+    parameters:
+      drop1name: 'drop27-1'
+      drop2name: 'drop28-1'
+- job:
+  displayName: 'Clean destination folder'
+  pool:
+    vmImage: ubuntu-18.04
+  steps:
+  - template: './cleanDestinationFolder.yaml'
+    parameters:
+      drop1name: 'drop27-3'
+
+# Windows-specific
+# These jobs have to be run after all other jobs to avoid unix agents trying to dowlnoad something
+# from file shares
+- job:
+  displayName: 'Windows don`t store permissions'
+  pool:
+    vmImage: windows-latest
+  steps:
+  - template: './dontStorePermissions.yaml'
+    parameters:
+      drop1name: 'drop31'
+      drop2name: 'drop32'
+- job:
+  displayName: 'Windows self-hosted don`t store permissions'
+  pool: Windows
+  steps:
+  - template: './dontStorePermissions.yaml'
+    parameters:
+      drop1name: 'drop33'
+      drop2name: 'drop34'
+- job:
+  displayName: 'Windows don`t store permissions'
+  pool:
+    vmImage: windows-latest
+  steps:
+  - template: './dontStorePermissions.yaml'
+    parameters:
+      drop1name: 'drop35'
+      drop2name: 'drop36'
+- job:
+  displayName: 'Windows download specific files'
+  pool:
+    vmImage: windows-latest
+  steps:
+  - template: './specificFiles.yaml'
+    parameters:
+      drop1name: 'drop37'
+      drop2name: 'drop38'
+- job:
+  displayName: 'Windows self-hosted file share'
+  pool: Windows
+  steps:
+  - template: './filePath.yaml'
+    parameters:
+      drop1name: 'drop39'
+      drop2name: 'drop40'
+- job:
+  displayName: 'Normalize paths'
+  pool: Windows
+  steps:
+  - template: './normalizePaths.yaml'
+    parameters:
+      drop1name: 'drop41'
+      drop2name: 'drop42'

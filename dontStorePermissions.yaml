@@ -1,0 +1,45 @@
+parameters:
+- name: drop1name
+  default: drop1
+- name: drop2name
+  default: drop2
+
+steps:
+- bash: mkdir -p artifacts/someDir
+- bash: echo "some content 1" > artifacts/someFile1.txt
+- bash: chmod +x artifacts/someFile1.txt
+- bash: echo "some content 2" > artifacts/someDir/someFile2.txt
+- bash: chmod +x artifacts/someDir/someFile2.txt
+- task: PublishBuildArtifactsM@1
+  inputs:
+    PathtoPublish: 'artifacts/someFile1.txt'
+    ArtifactName: ${{ parameters.drop1name }}
+    publishLocation: 'Container'
+    StoreAsTar: false
+- task: PublishBuildArtifactsM@1
+  inputs:
+    PathtoPublish: 'artifacts/someDir'
+    ArtifactName: ${{ parameters.drop2name }}
+    publishLocation: 'Container'
+    StoreAsTar: false
+- bash: ls -lR artifacts
+  displayName: 'File permissions before'
+- bash: rm -rf artifacts/someFile1.txt
+- bash: rm -rf artifacts/someDir
+
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: ${{ parameters.drop1name }}
+    downloadPath: 'artifacts'
+    extractTars: false
+- task: DownloadBuildArtifacts@1
+  inputs:
+    buildType: 'current'
+    downloadType: 'single'
+    artifactName: ${{ parameters.drop2name }}
+    downloadPath: 'artifacts'
+    extractTars: false
+- bash: ls -lR artifacts
+  displayName: 'File permissions after'

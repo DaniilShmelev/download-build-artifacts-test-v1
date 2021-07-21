@@ -15,7 +15,7 @@ steps:
 - bash: ls -lR artifacts
   displayName: 'File permissions before'
 
-- task: DownloadBuildArtifacts@1
+- task: DownloadBuildArtifactsM@1
   inputs:
     buildType: 'current'
     downloadType: 'single'
@@ -28,7 +28,7 @@ steps:
 - bash: rm -rf artifacts
 - bash: echo "eee" > artifacts
 
-- task: DownloadBuildArtifacts@1
+- task: DownloadBuildArtifactsM@1
   inputs:
     buildType: 'current'
     downloadType: 'single'

@@ -27,7 +27,7 @@ steps:
 - bash: rm -rf artifacts/someFile1.txt
 - bash: rm -rf artifacts/someDir
 
-- task: DownloadBuildArtifacts@1
+- task: DownloadBuildArtifactsM@1
   inputs:
     buildType: 'current'
     downloadType: 'specific'
